@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:library_system4/features/favorite/presentation/views/widgets/custom_favorite_item.dart';
 
-class FavoriteItemListView extends StatelessWidget {
+import 'custom_cart_item.dart';
+
+class CartItemListView extends StatelessWidget {
   final List<int> selectedItems;
   final Function(int) onItemLongPress;
 
-  const FavoriteItemListView({
+  const CartItemListView ({
     super.key,
     required this.selectedItems,
     required this.onItemLongPress,
@@ -21,7 +23,7 @@ class FavoriteItemListView extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 20),
           child: InkWell(
             onLongPress: () => onItemLongPress(i),
-            child: CustomFavoriteItem(isSelected: isSelected),
+            child: CustomCartItem(isSelected: isSelected),
           ),
         );
       },

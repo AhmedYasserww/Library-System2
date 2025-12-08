@@ -7,6 +7,8 @@ import 'package:library_system4/features/library/presentation/views/library_view
 import 'package:library_system4/features/navigation_bar/presentation/views/button_nav_bar_view.dart';
 import 'package:library_system4/features/on_boarding/presentation/views/on_boarding_view.dart';
 
+import '../../features/cart/presentation/views/cart_view.dart';
+
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
   switch (settings.name) {
@@ -26,6 +28,9 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const LibraryView());
     case FavoriteView.routeName:
       return MaterialPageRoute(builder: (context) => const FavoriteView());
+    case CartView.routeName:
+      return MaterialPageRoute(builder: (context) => const CartView());
+
 
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());

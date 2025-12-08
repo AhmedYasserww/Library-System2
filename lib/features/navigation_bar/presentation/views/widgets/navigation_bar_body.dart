@@ -3,6 +3,7 @@ import 'package:library_system4/features/favorite/presentation/views/favorite_vi
 import 'package:library_system4/features/home/presentation/views/home_view.dart';
 import 'package:library_system4/features/library/presentation/views/library_view.dart';
 import '../../../../../core/utils/app_color.dart';
+import '../../../../cart/presentation/views/cart_view.dart';
 
 class NavigationBarBody extends StatefulWidget {
   const NavigationBarBody({super.key});
@@ -24,7 +25,7 @@ class NavigationBarBodyState extends State<NavigationBarBody> {
     HomeView(),
    LibraryView(),
     FavoriteView(),
-   SizedBox(),
+   CartView(),
     SizedBox()
   ];
 

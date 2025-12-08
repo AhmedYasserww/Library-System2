@@ -3,10 +3,10 @@ import 'package:library_system4/core/utils/app_color.dart';
 import 'package:library_system4/core/utils/styles.dart';
 import 'package:library_system4/generated/assets.dart';
 
-class CustomFavoriteItem extends StatelessWidget {
+class CustomCartItem extends StatelessWidget {
   final bool isSelected;
 
-  const CustomFavoriteItem({
+  const CustomCartItem({
     super.key,
     this.isSelected = false,
   });

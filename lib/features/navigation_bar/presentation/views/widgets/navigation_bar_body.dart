@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:library_system4/features/favorite/presentation/views/favorite_view.dart';
 import 'package:library_system4/features/home/presentation/views/home_view.dart';
 import 'package:library_system4/features/library/presentation/views/library_view.dart';
+import 'package:library_system4/features/profile/presentation/views/profile_view.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../cart/presentation/views/cart_view.dart';
 
@@ -26,7 +27,7 @@ class NavigationBarBodyState extends State<NavigationBarBody> {
    LibraryView(),
     FavoriteView(),
    CartView(),
-    SizedBox()
+  ProfileView(),
   ];
 
   @override

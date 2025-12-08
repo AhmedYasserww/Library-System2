@@ -22,7 +22,7 @@ abstract class Styles {
     fontWeight: FontWeight.w700,
 
   );
-  static const textStyleMeduim14 = TextStyle(
+  static const textStyleMedium14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w500,
   );
@@ -45,5 +45,29 @@ abstract class Styles {
     fontWeight: FontWeight.w700,
 
   );
+  static const textStyleRegular14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+
+  );
+
+
+  static const textStyleBold20 = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+
+  );
+  static const textStyleSemiBold16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+
+  );
+
+  static const textStyleRegular12 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+
+  );
+
 }
 

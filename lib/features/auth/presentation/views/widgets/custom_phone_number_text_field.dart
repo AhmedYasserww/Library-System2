@@ -21,7 +21,7 @@ class PhoneNumberField extends StatelessWidget {
         return null;
       },
       prefixIcon: const Icon(Icons.phone_android),
-      labelText: const Text("phoneNumber",style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),),
+     hintText: "Enter Your Phone Number",
 
     );
   }

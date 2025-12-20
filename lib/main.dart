@@ -5,8 +5,13 @@ import 'package:library_system4/core/utils/app_color.dart';
 import 'package:library_system4/features/auth/presentation/views/sign_in_view.dart';
 import 'package:library_system4/features/on_boarding/presentation/views/on_boarding_view.dart';
 
-void main() {
+import 'core/service_locator/service_locator.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupServiceLocator();
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {

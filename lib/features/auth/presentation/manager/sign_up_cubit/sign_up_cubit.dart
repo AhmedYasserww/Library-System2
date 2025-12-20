@@ -15,6 +15,8 @@ class SignUpCubit extends Cubit<SignUpState> {
     required String email,
     required String password,
     required String phoneNumber,
+    required String firstName,
+    required String lastName,
   }) async {
     emit(SignUpLoading());
 
@@ -23,6 +25,8 @@ class SignUpCubit extends Cubit<SignUpState> {
       email: email,
       password: password,
       phoneNumber: phoneNumber,
+      firstName: firstName,
+      lastName: lastName,
     );
 
     result.fold((failure) => emit(SignUpFailure(errorMessage: failure.errorMessage)),

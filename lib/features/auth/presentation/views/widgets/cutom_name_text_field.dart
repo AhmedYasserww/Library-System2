@@ -11,7 +11,7 @@ class NameField extends StatelessWidget {
       controller: nameController,
       validator: (value) => value == null || value.isEmpty ? 'Field is required' : null,
       prefixIcon: const Icon(Icons.person),
-      labelText: const Text("Enter Your Name",style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),),
+     hintText: "Enter userName",
     );
   }
 }

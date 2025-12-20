@@ -10,10 +10,12 @@ abstract class AuthRepo {
     required String email,
     required String password,
     required String phoneNumber,
+    required String firstName,
+    required String lastName,
   });
 
-  // Future<Either<Failure, AuthModel>> signIn({
-  //   required String email,
-  //   required String password,
-  // });
+  Future<Either<Failure, AuthModel>> signIn({
+    required String email,
+    required String password,
+  });
 }

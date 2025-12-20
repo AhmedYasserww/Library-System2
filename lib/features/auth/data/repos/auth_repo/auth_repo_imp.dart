@@ -17,6 +17,8 @@ class AuthRepoImpl implements AuthRepo {
     required String email,
     required String password,
     required String phoneNumber,
+    required String firstName,
+    required String lastName,
   }) async {
     try {
       final response = await apiService.post(
@@ -26,22 +28,76 @@ class AuthRepoImpl implements AuthRepo {
           "email": email,
           "password": password,
           "phoneNumber": phoneNumber,
+          "firstName": firstName,
+          "lastName": lastName,
         },
       );
 
+      print("REGISTER RESPONSE => $response");
 
-      if (response["isAuthenticated"] == true) {
-        return Right(AuthModel.fromJson(response));
+      if (response is Map && response["success"] == true) {
+        final data = response["data"];
+        return Right(AuthModel.fromJson(Map<String, dynamic>.from(data)));
+      } else {
+        String errorMessage = "Registration failed";
+        if (response is Map) {
+          if (response["message"] != null && response["message"]
+              .toString()
+              .isNotEmpty) {
+            errorMessage = response["message"].toString();
+          } else if (response["errors"] != null && response["errors"] is List) {
+            errorMessage = (response["errors"] as List).join("\n");
+          }
+        }
+
+        return Left(ServerFailure(errorMessage: errorMessage));
       }
-      final String errorMessage =
-          response["message"] ?? "Registration failed";
-
-      return Left(ServerFailure(errorMessage: errorMessage));
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioError(e));
     } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      }
       return Left(ServerFailure(errorMessage: "Unexpected error"));
     }
   }
+
+  @override
+  Future<Either<Failure, AuthModel>> signIn({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final response = await apiService.post(
+        endPoint: "Account/login",
+        data: {
+          "email": email,
+          "password": password,
+        },
+      );
+
+      print("LOGIN RESPONSE => $response");
+
+      if (response is Map && response["success"] == true) {
+        final data = response["data"];
+        return Right(AuthModel.fromJson(Map<String, dynamic>.from(data)));
+      } else {
+        String errorMessage = "Login failed";
+        if (response is Map) {
+          if (response["message"] != null && response["message"]
+              .toString()
+              .isNotEmpty) {
+            errorMessage = response["message"].toString();
+          } else if (response["errors"] != null && response["errors"] is List) {
+            errorMessage = (response["errors"] as List).join("\n");
+          }
+        }
+
+        return Left(ServerFailure(errorMessage: errorMessage));
+      }
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioError(e));
+    } catch (e) {
+      return Left(ServerFailure(errorMessage: "Unexpected error"));
+    }
+  }
+
+
 }

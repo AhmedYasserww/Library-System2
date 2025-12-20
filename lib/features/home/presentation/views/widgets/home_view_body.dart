@@ -8,7 +8,6 @@ import 'package:library_system4/features/library/presentation/views/library_view
 import '../../../../../core/utils/styles.dart';
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
-
   @override
   Widget build(BuildContext context) {
     return  SingleChildScrollView(
@@ -35,8 +34,6 @@ class HomeViewBody extends StatelessWidget {
             SizedBox(height: 16,),
             ExploreByCategoryListView(),
             SizedBox(height: 24,),
-
-
           ],
         ),
       ),

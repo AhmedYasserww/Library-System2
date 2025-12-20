@@ -5,6 +5,7 @@ import 'package:library_system4/features/auth/presentation/views/widgets/custom_
 import 'package:library_system4/features/auth/presentation/views/widgets/cutom_name_text_field.dart';
 
 import '../../../../../core/utils/styles.dart';
+import 'custom_phone_number_text_field.dart';
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});
 
@@ -19,6 +20,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
   late TextEditingController nameController;
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  late TextEditingController phoneNumberController;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
@@ -36,6 +38,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
     nameController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    phoneNumberController = TextEditingController();
     super.initState();
   }
 
@@ -66,15 +69,18 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                         const SizedBox(height: 12,),
                          Text("Join BookWise and start your reading journey today",style: Styles.textStyleBold16.copyWith(color: Colors.grey),textAlign: TextAlign.center,),
                         const SizedBox(height: 32,),
-                        const Text("Full Name",style: Styles.textStyleBold16,),
+                        const Text("userName",style: Styles.textStyleBold16,),
                         const SizedBox(height: 6,),
-
                         NameField(nameController: nameController),
-                        const SizedBox(height: 18),
+                        const SizedBox(height: 14),
+                        const Text("phone number",style: Styles.textStyleBold16,),
+                        const SizedBox(height: 6,),
+                        PhoneNumberField(phoneNumberController: phoneNumberController),
+                        const SizedBox(height: 14),
                         const Text("Email",style: Styles.textStyleBold16,),
                         const SizedBox(height: 6,),
                         EmailField(emailController: emailController),
-                        const SizedBox(height: 18,),
+                        const SizedBox(height: 14,),
                         const Text("Password",style: Styles.textStyleBold16,),
                         const SizedBox(height: 6,),
                         PasswordField(

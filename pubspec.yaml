@@ -38,6 +38,9 @@ dependencies:
   flutter_svg: ^2.0.17
   dots_indicator: ^3.0.0
   get_it: ^7.7.0
+  dartz:
+  dio:
+  flutter_bloc:
   #shimmer: ^3.0.0
   smooth_page_indicator: ^1.0.0
   cached_network_image:

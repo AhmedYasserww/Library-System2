@@ -16,7 +16,7 @@ class CustomFeaturedBook extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.of(context).pushNamed(BookDetailsView.routeName);
+        Navigator.of(context).pushNamed(BookDetailsView.routeName,arguments: bookModel,);
       },
       child: Container(
         margin: const EdgeInsets.only(right: 16),

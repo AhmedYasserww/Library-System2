@@ -13,6 +13,7 @@ class BookModel {
     this.categoryId,
     this.userBorrows,
     this.favorites,
+    this.price,
   });
 
   BookModel.fromJson(Map<String, dynamic> json) {
@@ -20,6 +21,7 @@ class BookModel {
     title = json['title'];
     author = json['author'];
     description = json['description'];
+    price = (json['price'] as num?)?.toDouble();
     categoryName = json['categoryName'];
     totalCopies = json['totalCopies'];
     availableCopies = json['availableCopies'];
@@ -43,6 +45,7 @@ class BookModel {
   String? rowVersion;
   String? imageUrl;
   int? categoryId;
+  double ? price ;
   List<dynamic>? userBorrows;
   List<dynamic>? favorites;
 
@@ -53,6 +56,7 @@ class BookModel {
       'author': author,
       'description': description,
       'categoryName': categoryName,
+      'price': price,
       'totalCopies': totalCopies,
       'availableCopies': availableCopies,
       'createdAt': createdAt,

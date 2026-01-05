@@ -23,6 +23,20 @@ class ApiService {
       }
     }
   }
+  Future<dynamic> get({
+    required String endPoint,
+  }) async {
+    try {
+      final response = await dio.get("$baseUrl$endPoint");
+      return response.data;
+    } on DioException catch (e) {
+      if (e.response != null) {
+        return e.response?.data;
+      } else {
+        throw Exception("Network error: ${e.message}");
+      }
+    }
+  }
 }
 
 

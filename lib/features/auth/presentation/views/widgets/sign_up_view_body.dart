@@ -4,7 +4,6 @@ import 'package:library_system4/core/widgets/custom_button.dart';
 import 'package:library_system4/features/auth/presentation/views/widgets/custom_email_text_field.dart';
 import 'package:library_system4/features/auth/presentation/views/widgets/custom_password_text_field.dart';
 import 'package:library_system4/features/auth/presentation/views/widgets/cutom_name_text_field.dart';
-import 'package:library_system4/features/home/presentation/views/home_view.dart';
 
 import '../../../../../core/utils/styles.dart';
 import '../../../../navigation_bar/presentation/views/button_nav_bar_view.dart';
@@ -69,7 +68,6 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
         return  BlocConsumer<SignUpCubit, SignUpState>(
           listener: (context, state) {
             if (state is SignUpSuccess) {
-              // تحقق من الرسالة أو isAuthenticated
               final successMessage = state.authModel.isAuthenticated == true
                   ? "Register successfully"
                   : state.authModel.message ?? "Register failed";

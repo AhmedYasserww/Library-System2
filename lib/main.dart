@@ -6,6 +6,7 @@ import 'package:library_system4/features/auth/presentation/views/sign_in_view.da
 import 'package:library_system4/features/on_boarding/presentation/views/on_boarding_view.dart';
 
 import 'core/service_locator/service_locator.dart';
+import 'features/navigation_bar/presentation/views/button_nav_bar_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
       ),
       onGenerateRoute: onGenerateRoutes,
-      initialRoute: SignInView.routeName,
+     // initialRoute: SignInView.routeName,
+      initialRoute: ButtonNavBarView.routeName,
     );
   }
 }

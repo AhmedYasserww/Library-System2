@@ -63,26 +63,5 @@ class CustomBookLibraryGridView extends StatelessWidget {
     );
   }
   }
-  //   return BlocBuilder<>(
-  //     builder: (context , state) {
-  //       return SliverPadding(
-  //         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-  //         sliver: SliverGrid(
-  //           delegate: SliverChildBuilderDelegate(
-  //                 (context, index) {
-  //               return const CustomBookLibrary();
-  //             },
-  //             childCount: 10,
-  //           ),
-  //           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-  //             crossAxisCount: 2,
-  //             mainAxisSpacing: 10,
-  //             crossAxisSpacing: 10,
-  //             childAspectRatio: 0.55,
-  //           ),
-  //         ),
-  //       );
-  //     }
-  //   );
-  // }
+
 

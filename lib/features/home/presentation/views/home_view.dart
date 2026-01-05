@@ -9,6 +9,7 @@ import 'package:library_system4/features/home/presentation/manager/category_cubi
 import 'package:library_system4/features/home/presentation/views/widgets/home_view_body.dart';
 
 import '../../../../core/service_locator/service_locator.dart';
+import '../manager/featured_book_cubit/get_featured_book_cubit.dart';
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
   static const  String routeName = 'home_view';
@@ -20,8 +21,9 @@ class HomeView extends StatelessWidget {
         BlocProvider(
           create: (_) => GetAllCategoryCubit(getIt.get<CategoryRepoImpl>() )..fetchCategories(),
         ),
+
         BlocProvider(
-          create: (_) => GetAllBookCubit(getIt.get<BookRepoImpl>() )..fetchBooks(),
+          create: (_) => GetFeaturedBookCubit(getIt.get<BookRepoImpl>() )..fetchFeaturedBooks(),
         ),
       ],
       child: const Scaffold(

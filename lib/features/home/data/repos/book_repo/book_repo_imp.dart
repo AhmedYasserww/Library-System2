@@ -35,4 +35,32 @@ class BookRepoImpl implements BookRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async{
+    try {
+      final response = await apiService.get(endPoint: "Book/recommended");
+
+      print("========== BOOK RESPONSE Featured START ==========");
+      print(response);
+      print("=========== BOOK RESPONSE Featured END ===========");
+
+      if (response is List) {
+        final books = response
+            .map((e) => BookModel.fromJson(e))
+            .toList();
+
+        return Right(books);
+      } else {
+        return Left(
+          ServerFailure(errorMessage: "Unexpected response featured format"),
+        );
+      }
+    } catch (e) {
+      return Left(
+        ServerFailure(errorMessage: e.toString()),
+      );
+    }
+
+  }
 }

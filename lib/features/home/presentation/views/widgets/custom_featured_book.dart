@@ -52,13 +52,24 @@ class CustomFeaturedBook extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
 
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(Icons.access_time_sharp,color: AppColors.buttonColor,),
-                const SizedBox(width: 8,),
-                Expanded(child: Text(bookModel.categoryName??" ",style: Styles.textStyleBold18.copyWith(color:Color(0xffb88f5c)),)),
-              ],
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.access_time_sharp,color: AppColors.buttonColor,),
+                  const SizedBox(width: 8,),
+                  Flexible(
+                    child: Text(
+                      bookModel.categoryName ?? "",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Styles.textStyleBold18.copyWith(
+                        color: const Color(0xffb88f5c),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           )
 

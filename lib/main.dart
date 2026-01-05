@@ -3,13 +3,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:library_system4/core/helper_functions/on_generate_routes.dart';
 import 'package:library_system4/core/utils/app_color.dart';
 import 'package:library_system4/features/auth/presentation/views/sign_in_view.dart';
+import 'package:library_system4/features/auth/presentation/views/sign_up_view.dart';
 import 'package:library_system4/features/on_boarding/presentation/views/on_boarding_view.dart';
 
 import 'core/service_locator/service_locator.dart';
+import 'core/services/shared_preference_service.dart';
 import 'features/navigation_bar/presentation/views/button_nav_bar_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final token = await CacheService.getToken();
+
+  print("🧪 SAVED TOKEN FROM CACHE => $token");
   setupServiceLocator();
   runApp(const MyApp());
 

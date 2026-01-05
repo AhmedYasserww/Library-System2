@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preference_service.dart';
 import '../../../data/model/AuthModel.dart';
 import '../../../data/repos/auth_repo/auth_repo.dart';
 
@@ -29,8 +30,17 @@ class SignUpCubit extends Cubit<SignUpState> {
       lastName: lastName,
     );
 
-    result.fold((failure) => emit(SignUpFailure(errorMessage: failure.errorMessage)),
-            (authModel) => emit(SignUpSuccess(authModel: authModel)));
+    result.fold(
+          (failure) => emit(SignUpFailure(errorMessage: failure.errorMessage)),
+          (authModel) async {
+
+        if (authModel.token != null && authModel.token!.isNotEmpty) {
+          await CacheService.saveToken(authModel.token!);
+        }
+
+        emit(SignUpSuccess(authModel: authModel));
+      },
+    );
   }
 }
 

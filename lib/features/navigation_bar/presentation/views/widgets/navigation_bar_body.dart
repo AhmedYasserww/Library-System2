@@ -4,7 +4,6 @@ import 'package:library_system4/features/home/presentation/views/home_view.dart'
 import 'package:library_system4/features/library/presentation/views/library_view.dart';
 import 'package:library_system4/features/profile/presentation/views/profile_view.dart';
 import '../../../../../core/utils/app_color.dart';
-import '../../../../cart/presentation/views/cart_view.dart';
 
 class NavigationBarBody extends StatefulWidget {
   const NavigationBarBody({super.key});
@@ -26,7 +25,6 @@ class NavigationBarBodyState extends State<NavigationBarBody> {
     HomeView(),
    LibraryView(),
     FavoriteView(),
-   CartView(),
   ProfileView(),
   ];
 
@@ -45,7 +43,6 @@ class NavigationBarBodyState extends State<NavigationBarBody> {
           BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: "home"),
           BottomNavigationBarItem(icon: Icon(Icons.local_library_outlined), label: "library"),
           BottomNavigationBarItem(icon: Icon(Icons.favorite_border_outlined), label: "favourite"),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_outlined), label: "Cart"),
           BottomNavigationBarItem(icon: Icon(Icons.person_2_outlined), label: "profile"),
         ],
       ),

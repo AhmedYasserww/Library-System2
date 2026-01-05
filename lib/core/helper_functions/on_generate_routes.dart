@@ -6,8 +6,6 @@ import 'package:library_system4/features/home/presentation/views/home_view.dart'
 import 'package:library_system4/features/library/presentation/views/library_view.dart';
 import 'package:library_system4/features/navigation_bar/presentation/views/button_nav_bar_view.dart';
 import 'package:library_system4/features/on_boarding/presentation/views/on_boarding_view.dart';
-
-import '../../features/cart/presentation/views/cart_view.dart';
 import '../../features/profile/presentation/views/profile_view.dart';
 
 
@@ -29,8 +27,6 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const LibraryView());
     case FavoriteView.routeName:
       return MaterialPageRoute(builder: (context) => const FavoriteView());
-    case CartView.routeName:
-      return MaterialPageRoute(builder: (context) => const CartView());
     case ProfileView.routeName:
       return MaterialPageRoute(builder: (context) => const ProfileView());
 

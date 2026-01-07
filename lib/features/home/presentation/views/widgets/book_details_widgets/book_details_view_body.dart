@@ -20,7 +20,9 @@ class BookDetailsViewBody extends StatelessWidget {
             bookModel: bookModel,
           ),
           SizedBox(height: 32),
-          BookActionsSection(),
+          BookActionsSection(
+            bookModel: bookModel,
+          ),
           SizedBox(height: 32),
           ImageBookDetails(
             bookModel: bookModel,

@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
       ),
       onGenerateRoute: onGenerateRoutes,
-     // initialRoute: SignInView.routeName,
-      initialRoute: ButtonNavBarView.routeName,
+      initialRoute: SignInView.routeName,
+      //initialRoute: ButtonNavBarView.routeName,
     );
   }
 }

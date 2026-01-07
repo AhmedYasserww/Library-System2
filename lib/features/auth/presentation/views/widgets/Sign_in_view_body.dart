@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/services/shared_preference_service.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../home/presentation/views/home_view.dart';
@@ -46,27 +47,37 @@ class _SignInViewBodyState extends State<SignInViewBody> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignInCubit, SignInState>(
-      listener: (context, state) {
+      listener: (context, state) async{
         if (state is SignInSuccess) {
-          final successMessage = state.authModel.isAuthenticated == true
-              ? state.authModel.message ?? "Login successfully"
-              : state.authModel.message ?? "Login failed";
+          if (state.authModel.isAuthenticated == true) {
 
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
+            final token = state.authModel.token;
+            if (token != null && token.isNotEmpty)  {
+              await CacheService.saveToken(token);
+            }
+
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                const SnackBar(
+                  content: Text("Login successfully", style: TextStyle(color: Colors.white, fontSize: 16)),
+                  backgroundColor: Colors.green,
+                ),
+              );
+
+            Navigator.pushReplacementNamed(context, ButtonNavBarView.routeName);
+
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(successMessage,style: TextStyle(color: Colors.white,fontSize: 16),),
-                backgroundColor: state.authModel.isAuthenticated == true
-                    ? Colors.green
-                    : Colors.red,
+                content: Text(state.authModel.message ?? "Login failed"),
+                backgroundColor: Colors.red,
               ),
             );
-
-          if (state.authModel.isAuthenticated == true) {
-            Navigator.pushReplacementNamed(context, ButtonNavBarView.routeName);
           }
-        } else if (state is SignInFailure) {
+        }
+
+        else if (state is SignInFailure) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(

@@ -1,4 +1,6 @@
+
 import 'package:dio/dio.dart';
+
 
 class ApiService {
   final Dio dio;
@@ -7,38 +9,40 @@ class ApiService {
 
   final String baseUrl = "http://smartlibrary.runasp.net/api/";
 
+  Future<dynamic> get({
+    required String endPoint,
+    Map<String, dynamic>? headers,
+  }) async {
+    try {
+      final response = await dio.get(
+        "$baseUrl$endPoint",
+        options: Options(headers: headers),
+      );
+      return response.data;
+    } on DioException catch (e) {
+      if (e.response != null) return e.response?.data;
+      throw Exception("Network error: ${e.message}");
+    }
+  }
+
   Future<dynamic> post({
     required String endPoint,
     required Map<String, dynamic> data,
+    Map<String, dynamic>? headers,
   }) async {
     try {
-      var response = await dio.post(
-        "$baseUrl$endPoint", data: data,);
+      final response = await dio.post(
+        "$baseUrl$endPoint",
+        data: data,
+        options: Options(headers: headers),
+      );
       return response.data;
     } on DioException catch (e) {
-      if (e.response != null) {
-        return e.response?.data;
-      } else {
-        throw Exception("Network error: ${e.message}");
-      }
-    }
-  }
-  Future<dynamic> get({
-    required String endPoint,
-  }) async {
-    try {
-      final response = await dio.get("$baseUrl$endPoint");
-      return response.data;
-    } on DioException catch (e) {
-      if (e.response != null) {
-        return e.response?.data;
-      } else {
-        throw Exception("Network error: ${e.message}");
-      }
+      if (e.response != null) return e.response?.data;
+      throw Exception("Network error: ${e.message}");
     }
   }
 }
-
 
 
 //   Future<dynamic> delete({

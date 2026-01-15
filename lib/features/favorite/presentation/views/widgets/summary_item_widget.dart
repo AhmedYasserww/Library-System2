@@ -2,16 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:library_system4/core/utils/app_color.dart';
 import 'package:library_system4/core/utils/styles.dart';
 import 'package:library_system4/core/widgets/custom_button.dart';
+import '../../../../home/data/models/BookModel.dart';
+
 class SummaryItemWidget extends StatelessWidget {
+  final List<int> selectedItems;
+  final List<BookModel> favoriteBooks;
+
   const SummaryItemWidget({
     super.key,
     required this.selectedItems,
+    required this.favoriteBooks,
   });
-
-  final List<int> selectedItems;
 
   @override
   Widget build(BuildContext context) {
+    final totalAvailableCopies = favoriteBooks.fold<int>(
+      0,
+          (sum, book) => sum + (book.availableCopies ?? 0),
+    );
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: const BoxDecoration(
@@ -33,11 +42,11 @@ class SummaryItemWidget extends StatelessWidget {
           const SizedBox(height: 8),
           Row(
             children: [
-              Text("Total Books:",
+              Text("Total Available Copies:",
                   style: Styles.textStyleBold18
                       .copyWith(color: Colors.white)),
               const Spacer(),
-              Text("20",
+              Text("$totalAvailableCopies",
                   style: Styles.textStyleBold18
                       .copyWith(color: Colors.white)),
             ],

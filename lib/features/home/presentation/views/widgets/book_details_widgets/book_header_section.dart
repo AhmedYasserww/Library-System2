@@ -18,7 +18,7 @@ class BookHeaderSection extends StatelessWidget {
           children: [
             Text("By ${bookModel.author ?? ""}", style: Styles.textStyleMedium18.copyWith(color: Colors.grey)),
             const SizedBox(width: 16),
-            Text("Horror", style: Styles.textStyleMedium18.copyWith(color: Colors.grey)),
+            Text("Horror", style: Styles.textStyleMedium18.copyWith(color:AppColors.buttonColor)),
           ],
         ),
         const SizedBox(height: 16),

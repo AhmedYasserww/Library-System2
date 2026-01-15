@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:library_system4/features/borrow/data/repos/borrow_book_repo_imp.dart';
+import 'package:library_system4/features/favorite/data/repos/favorite_book_repo_imp.dart';
 import 'package:library_system4/features/home/data/repos/book_repo/book_repo_imp.dart';
 import 'package:library_system4/features/home/data/repos/category_repo/category_repo_imp.dart';
+import 'package:library_system4/features/profile/data/repos/profile_repo_imp.dart';
 
 import '../../features/auth/data/repos/auth_repo/auth_repo_imp.dart';
 import '../services/api_service.dart';
@@ -16,7 +18,10 @@ void setupServiceLocator() {
   getIt.registerSingleton<CategoryRepoImpl>(CategoryRepoImpl(apiService:getIt.get<ApiService>(),));
    getIt.registerSingleton<BookRepoImpl>(BookRepoImpl(apiService:getIt.get<ApiService>(),));
   getIt.registerSingleton<BorrowBookRepoImpl>(BorrowBookRepoImpl(apiService:getIt.get<ApiService>(),));
-
+  getIt.registerSingleton<ProfileRepoImpl>(ProfileRepoImpl(apiService:getIt.get<ApiService>(),));
+  getIt.registerSingleton<FavoriteBookRepoImpl>(FavoriteBookRepoImpl(apiService:getIt.get<ApiService>(),));
 
 }
+
+
 

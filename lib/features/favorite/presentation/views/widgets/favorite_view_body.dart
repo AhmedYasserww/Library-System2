@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:library_system4/features/favorite/presentation/views/widgets/favorite_item_list_view.dart';
 import 'package:library_system4/features/favorite/presentation/views/widgets/summary_item_widget.dart';
+
+import '../../manager/favorite_book_cubit/get_favorite_book_cubit.dart';
 
 class FavoriteViewBody extends StatefulWidget {
   const FavoriteViewBody({super.key});
@@ -36,7 +39,18 @@ class _FavoriteViewBodyState extends State<FavoriteViewBody> {
             ),
           ),
           const SizedBox(height: 32),
-          SummaryItemWidget(selectedItems: selectedItems)
+          BlocBuilder<GetFavoriteBookCubit, GetFavoriteBookState>(
+            builder: (context, state) {
+              if (state is GetFavoriteBookSuccess) {
+                return SummaryItemWidget(
+                  selectedItems: selectedItems,
+                  favoriteBooks: state.favoriteBooks,
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          ),
+
         ],
       ),
     );

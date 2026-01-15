@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:library_system4/core/utils/app_color.dart';
 import 'package:library_system4/core/utils/styles.dart';
-import 'package:library_system4/generated/assets.dart';
+import '../../../../home/data/models/BookModel.dart';
 
 class CustomFavoriteItem extends StatelessWidget {
   final bool isSelected;
+  final BookModel book;
+  final VoidCallback? onRemove;
 
   const CustomFavoriteItem({
     super.key,
+    required this.book,
     this.isSelected = false,
+    this.onRemove,
   });
 
   @override
@@ -28,43 +32,56 @@ class CustomFavoriteItem extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: const Image(
-                  image: AssetImage(Assets.imagesImage3),
+                child: book.imageUrl != null
+                    ? Image.network(
+                  "http://smartlibrary.runasp.net${book.imageUrl}",
                   height: 150,
+                  width: 100,
+                  fit: BoxFit.cover,
+                )
+                    : const SizedBox(
+                  height: 150,
+                  width: 100,
+                  child: Icon(Icons.book, size: 60, color: Colors.white38),
                 ),
               ),
               const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Origin",
-                    style: Styles.textStyleBold24.copyWith(color: Colors.white),
-                  ),
-                  Text(
-                    "Dan Brown",
-                    style: Styles.textStyleMedium18
-                        .copyWith(color: const Color(0xff606670)),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    "\$7.99",
-                    style: Styles.textStyleBold24
-                        .copyWith(color: AppColors.buttonColor),
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      book.title ?? "Unknown Title",
+                      style:
+                      Styles.textStyleBold24.copyWith(color: Colors.white),
+                    ),
+                    Text(
+                      book.author ?? "Unknown Author",
+                      style: Styles.textStyleMedium18
+                          .copyWith(color: const Color(0xff606670)),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      book.price != null ? "\$${book.price}" : "Price N/A",
+                      style: Styles.textStyleBold24
+                          .copyWith(color: AppColors.buttonColor),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(width: 16),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(right: 16),
                   child: InkWell(
-                    onTap: (){},
+                    onTap: onRemove,
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: const Color(0xffe3000c),
                       ),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 12),
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
@@ -81,13 +98,12 @@ class CustomFavoriteItem extends StatelessWidget {
           ),
         ),
 
-
         if (isSelected)
           Positioned(
             top: 8,
             right: 8,
             child: CircleAvatar(
-              backgroundColor:AppColors.buttonColor,
+              backgroundColor: AppColors.buttonColor,
               radius: 14,
               child: const Icon(Icons.check, color: Colors.black, size: 18),
             ),
@@ -96,59 +112,3 @@ class CustomFavoriteItem extends StatelessWidget {
     );
   }
 }
-
-
-
-// import 'package:flutter/material.dart';
-// import 'package:library_system4/core/utils/app_color.dart';
-// import 'package:library_system4/core/utils/styles.dart';
-// import 'package:library_system4/generated/assets.dart';
-// class CustomFavoriteItem extends StatelessWidget {
-//   const CustomFavoriteItem({
-//     super.key,
-//   });
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       padding:const EdgeInsets.only(left: 42,top: 22,bottom: 22),
-//       decoration: BoxDecoration(
-//         color: const Color(0xff1c2232),
-//         borderRadius: BorderRadius.circular(20),
-//       ),
-//       child: Row(
-//         children: [
-//           ClipRRect(
-//               borderRadius: BorderRadius.circular(8),
-//               child: const Image(image: AssetImage(Assets.imagesImage3,),height: 150,)),
-//          const SizedBox(width: 12,),
-//           Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Text("Origin",style: Styles.textStyleBold24.copyWith(color: Colors.white),),
-//               Text("Dan Brown",style: Styles.textStyleMedium18.copyWith(color: const Color(0xff606670)),),
-//               const SizedBox(height: 2,),
-//               Text("\$7.99",style: Styles.textStyleBold24.copyWith(color: AppColors.buttonColor),),
-//             ],
-//           ),
-//           const SizedBox(width: 16,),
-//           Expanded(
-//             child: Padding(
-//               padding: const EdgeInsets.only(right: 16),
-//               child: Container(
-//                 decoration: BoxDecoration(
-//                   borderRadius: BorderRadius.circular(10),
-//                   color: const Color(0xffe3000c),
-//                 ),
-//                 child: FittedBox(
-//                     fit: BoxFit.scaleDown,
-//                     child: Text("Remove",style: Styles.textStyleSemiBold20.copyWith(color: Colors.white),)),
-//               ),
-//             ),
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
-
